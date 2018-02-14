@@ -9,14 +9,15 @@ from bs4 import BeautifulSoup as soup
 
 headers = {"User-Agent": "Web scraping program for project at Rutgers University. Contact me at cory551043@gmail.com"}
 
-startURL = 'https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=ndb&fgcd=&manu=&lfacet=&qlookup=&ds=&qt=&qp=&qa=&qn=&q=&ing=&offset=0&order=asc'
-#startURL = input("Enter starting URL: ")
+#startURL = 'https://ndb.nal.usda.gov/ndb/search/list?maxsteps=6&format=&count=&max=50&sort=ndb&fgcd=&manu=&lfacet=&qlookup=&ds=&qt=&qp=&qa=&qn=&q=&ing=&offset=0&order=asc'
+startURL = input("Enter starting URL: ")
 endPage = input("Enter page to end scrape (inclusive): ")
 
 def getLinks(urlToScrape):
 #Given a starting URL, will return a list of all the URLs of foods, the next page to visit, and the current page num
+
 	pageSoup = getSoup(urlToScrape)
-	
+
 	foodsOnPage = pageSoup.findAll("tr",{"style":"line-height: 1.2em;"})
 		
 		#NEXT LINK FOUND HERE#
@@ -49,8 +50,13 @@ def getLinks(urlToScrape):
 
 def scrapeLinks(urlList):
 #Traverses list of URLs, and retieves data wanted
+	dataList = []
+
 	for link in range(len(urlList)):
 		pageSoup = getSoup(urlList[link])
+
+		#if pageSoup == 'Failed':
+		#	return 'Failed'
 
 		print("\tFood #" + str(link+1) + " is being scraped...") 
 			
@@ -148,9 +154,13 @@ def scrapeLinks(urlList):
 		print("\t\tSugar: " + sugar)
 		print("\t\tIngredients: " + ing)
 
+		line = productName + ',' + calories + ',' + protein + ',' + fat + ',' + carbs + ',' + fiber + ',' + sugar + ',' + ing
+		#print(line)
+		dataList.append(line)
+		
 		time.sleep(randint(2,6))
 	
-	return
+	return dataList
 
 def parseRows(rows):
 #Takes in all occurrences of 'tr' and parses appropriately
@@ -188,14 +198,14 @@ def parseRows(rows):
 def getSoup(urlToTry):
 #Exception handler and modularized URL opener
 	for attempts in range(10):
-		
+
 		pageHTML = requests.get(urlToTry, headers = headers)
 
 		if (pageHTML.status_code < 200) or (pageHTML.status_code > 299):
 			print("Connection Error...Sleeping and retrying " + str(10-attempts) + " more times")
 			time.sleep(10)
 		elif attempts == 9:
-			print("Failed after 10 tries on page " + str(pageNum))
+			print("Failed after 10 tries. Check logs for last visited page")
 			sys.exit(1)
 		else:
 			pageHTML = pageHTML.text
@@ -205,7 +215,8 @@ def getSoup(urlToTry):
 
 	return pageSoup
 
-#######TODO: ADD FOR LOOP HERE#######
+
+
 jumpSoup = getSoup(startURL)
 startPNum = jumpSoup.find("span",{"class":"currentStep"})
 
@@ -218,8 +229,9 @@ else:
 #for pagesScanned in range(loops):
 fullNextLink = None
 firstRun = True
+
 while True:
-	
+
 	if firstRun:
 		metaData = getLinks(startURL)
 	else:
@@ -231,10 +243,30 @@ while True:
 
 	print("STARTING SCRAPE ON PAGE " + str(pageNum))
 	
-	z = scrapeLinks(urlList)
-	
+	dataList = scrapeLinks(urlList)
+
+	#Write to file
+	if firstRun:
+		
+		fileName = "data" + pageNum + "-" + endPage + ".csv"
+		
+		with open(fileName,'w') as file:
+			
+			file.write("product_name,calories,protein,fat,carbs,fiber,sugar,ingredients" + '\n')
+    		
+			for line in dataList:
+				file.write(line)
+				file.write('\n')
+	else:
+		
+		with open(fileName,'a') as file:
+    		
+			for line in dataList:
+				file.write(line)
+				file.write('\n')
+
 	if pageNum == endPage:
-		print("Finished Successfully")
+		print("Finished Successfully on page " + pageNum)
 		break
 	
 	firstRun = False
