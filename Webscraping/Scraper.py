@@ -267,6 +267,7 @@ while True:
 
 	if pageNum == endPage:
 		print("Finished Successfully on page " + pageNum)
+		print("Start next scrape on: " + fullNextLink)
 		break
 	
 	firstRun = False
