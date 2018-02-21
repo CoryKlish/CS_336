@@ -1,9 +1,0 @@
-﻿To pull new data from github
-* git pull
-
-
-To push your edits to github
-* git add “file name”
-* git add --all        ← push everything
-* git commit -m “message you want to say”
-* git push origin master
