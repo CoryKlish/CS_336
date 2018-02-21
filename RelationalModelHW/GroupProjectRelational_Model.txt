@@ -1,0 +1,64 @@
+# Elisa Orsini, Saif Jame, Ken Chang, Corey Knish
+# Group: Data Miners
+# Section 1 & 3
+# Principles of Information and Data Management
+
+table T_User(
+	User_ID,
+	Name NOT NULL,
+	Allergy NOT NULL,
+	Age,
+	primary key(User_ID)
+)
+table T_hasAllergyTo(
+	User_ID,
+	Ingredient_ID,
+	primary key(Ingredient_ID, User_ID),
+	foreign key(User_ID) 
+		references T_User
+		ON DELETE CASCADE ON UPDATE CASCADE,
+	foreign key(Ingredient_ID)
+		references T_Ingredients
+)
+table T_Ingredients(
+	Ingredient_ID,
+	Ingredient_List,
+	primary key(Ingredient_ID)
+)
+table T_Contain(
+	Ingredient_ID,
+	Product_ID,
+	primary key(Ingredient_ID, Product_ID),
+	foreign key(Product_ID) 
+		references T_Product,
+	foreign key(Ingredient_ID)
+		references T_Ingredients
+)
+table T_Product(
+	Product_ID,
+	Brand,
+	Product_Name NOT NULL,
+	primary key(Product_ID)
+)
+table T_has( 
+	Product_ID,
+	Nutrition_ID,
+	primary key(Product_ID,Nutrition_ID),
+	foreign key Product_ID
+		references T_Product,
+	foreign key Nutrition_ID
+		references T_NutritionalFacts
+)
+table T_NutritionalFacts(
+	Nutrition_ID,
+	Product_ID,
+	Fiber,
+	Sugar,
+	Fat,	
+	Carbohydrates,
+	Protein,
+	Calories,
+	primary key(Nutrition_ID),
+	foreign key(Product_ID)
+		references T_Product
+)
