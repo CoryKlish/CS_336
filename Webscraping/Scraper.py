@@ -69,7 +69,9 @@ def scrapeLinks(urlList):
 			#Gets table which we need for Cal, Fat, Protein, etc.
 		table = pageSoup.find("tbody")
 		rows = table.findAll("tr") #Finds all rows in table
+		columnList = pageSoup.findAll("th")
 
+		colIndex = parseColumns(columnList)
 		helpArr = parseRows(rows)
 
 		calIndex = helpArr[0]
@@ -87,7 +89,7 @@ def scrapeLinks(urlList):
 		if helpArr[0] != None:
 			energyRow = rows[calIndex]
 			calCol = energyRow.findChildren('td')
-			calories = calCol[3].text.strip()
+			calories = calCol[colIndex].text.strip()
 		else:
 			calories = ''
 
@@ -98,7 +100,7 @@ def scrapeLinks(urlList):
 		if helpArr[1] != None:
 			proRow = rows[proIndex]
 			proCol = proRow.findChildren('td')
-			protein = proCol[3].text.strip()
+			protein = proCol[colIndex].text.strip()
 		else:
 			protein = ''
 
@@ -106,7 +108,7 @@ def scrapeLinks(urlList):
 		if helpArr[2] != None:
 			fatRow = rows[fatIndex]
 			fatCol = fatRow.findChildren('td')
-			fat = fatCol[3].text.strip()
+			fat = fatCol[colIndex].text.strip()
 		else:
 			fat = ''
 
@@ -114,7 +116,7 @@ def scrapeLinks(urlList):
 		if helpArr[3] != None:
 			carbRow = rows[carbIndex]
 			carbCol = carbRow.findChildren('td')
-			carbs = carbCol[3].text.strip()
+			carbs = carbCol[colIndex].text.strip()
 		else:
 			carbs = ''
 			
@@ -122,7 +124,7 @@ def scrapeLinks(urlList):
 		if helpArr[4] != None:
 			fibRow = rows[fibIndex]
 			fibCol = fibRow.findChildren('td')
-			fiber = fibCol[3].text.strip()
+			fiber = fibCol[colIndex].text.strip()
 		else:
 			fiber = ''
 
@@ -130,7 +132,7 @@ def scrapeLinks(urlList):
 		if helpArr[5] != None:
 			sugRow = rows[sugIndex]
 			sugCol = sugRow.findChildren('td')
-			sugar = sugCol[3].text.strip()
+			sugar = sugCol[colIndex].text.strip()
 		else:
 			sugar = ''
 
@@ -142,7 +144,7 @@ def scrapeLinks(urlList):
 			sep = '\n'
 			ing = divList[5].text.split(sep)[1].strip().replace(',','|')
 		else:
-			ing = "N/A"
+			ing = ''
 
 			#Print Results
 		print("\t\tName: " + productName)
@@ -193,6 +195,19 @@ def parseRows(rows):
 	#for x in range(len(helpArr)):
 	#	print(helpArr[x])
 	return helpArr
+
+def parseColumns(col):
+#Takes in header columns and returns column index to get
+	for i in range(len(col)):
+		if(col[i].has_attr('title')):
+			if(col[i]['title'].strip() == 'Value for 100 g'):
+				return i
+			else:
+				continue
+		else:
+			continue
+
+	return 3
 
 
 def getSoup(urlToTry):
@@ -246,13 +261,16 @@ while True:
 	dataList = scrapeLinks(urlList)
 
 	#Write to file
+
+	print("Writing to CSV...")
+
 	if firstRun:
 		
 		fileName = "data" + pageNum + "-" + endPage + ".csv"
 		
 		with open(fileName,'w') as file:
 			
-			file.write("product_name,calories,protein,fat,carbs,fiber,sugar,ingredients" + '\n')
+			#file.write("product_name,calories,protein,fat,carbs,fiber,sugar,ingredients" + '\n')
     		
 			for line in dataList:
 				file.write(line)
