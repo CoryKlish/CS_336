@@ -143,8 +143,22 @@ def scrapeLinks(urlList):
 			divList = pageSoup.findAll('div',{"class":"col-md-12"})
 			sep = '\n'
 			ing = divList[5].text.split(sep)[1].strip().replace(',','|')
+			#ing = ing.encode('utf-8')
+			ing = str(ing)
 		else:
 			ing = ''
+
+		#Test
+		#fileName = "data" + pageNum + "-" + endPage + ".csv"
+		#
+		#with open(fileName,'w') as file:
+		#	
+		#	#file.write("product_name,calories,protein,fat,carbs,fiber,sugar,ingredients" + '\n')
+    	#	
+		#	for line in dataList:
+		#		file.write(line)
+		#		file.write('\n')
+		#End Test
 
 			#Print Results
 		print("\t\tName: " + productName)
