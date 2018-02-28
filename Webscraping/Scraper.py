@@ -65,6 +65,13 @@ def scrapeLinks(urlList):
 		productName = productName.split(",")
 		del productName[0]
 		productName = ''.join(productName).strip()
+
+		if '\n' in productName:
+			productName = productName.split('\n')
+			productName = productName[0]
+
+		productName = removeNonAscii(productName)
+		productName = str(productName)
 			
 			#Gets table which we need for Cal, Fat, Protein, etc.
 		table = pageSoup.find("tbody")
@@ -144,21 +151,24 @@ def scrapeLinks(urlList):
 			sep = '\n'
 			ing = divList[5].text.split(sep)[1].strip().replace(',','|')
 			#ing = ing.encode('utf-8')
+			ing = removeNonAscii(ing)
 			ing = str(ing)
 		else:
 			ing = ''
 
+		'''
 		#Test
-		#fileName = "data" + pageNum + "-" + endPage + ".csv"
-		#
-		#with open(fileName,'w') as file:
-		#	
-		#	#file.write("product_name,calories,protein,fat,carbs,fiber,sugar,ingredients" + '\n')
-    	#	
-		#	for line in dataList:
-		#		file.write(line)
-		#		file.write('\n')
+		fileName = "data" + pageNum + "-" + endPage + ".csv"
+		
+		with open(fileName,'w') as file:
+			
+			#file.write("product_name,calories,protein,fat,carbs,fiber,sugar,ingredients" + '\n')
+    		
+			for line in dataList:
+				file.write(line)
+				file.write('\n')
 		#End Test
+		'''
 
 			#Print Results
 		print("\t\tName: " + productName)
@@ -244,7 +254,9 @@ def getSoup(urlToTry):
 
 	return pageSoup
 
-
+def removeNonAscii(s): 
+#Remove the non ASCII characters in string to eliminate error
+	return "".join(i for i in s if ord(i)<128)
 
 jumpSoup = getSoup(startURL)
 startPNum = jumpSoup.find("span",{"class":"currentStep"})
