@@ -149,7 +149,14 @@ def scrapeLinks(urlList):
 		if (len(hasStrong)) != 0:
 			divList = pageSoup.findAll('div',{"class":"col-md-12"})
 			sep = '\n'
-			ing = divList[5].text.split(sep)[1].strip().replace(',','|')
+
+			ingIndex = getIngIndex(divList)
+			
+			if ingIndex == None:
+				ing = ''
+				break
+
+			ing = divList[ingIndex].text.split(sep)[1].strip().replace(',','|')
 			#ing = ing.encode('utf-8')
 			ing = removeNonAscii(ing)
 			ing = str(ing)
@@ -253,6 +260,14 @@ def getSoup(urlToTry):
 	pageSoup = soup(pageHTML, "html5lib")
 
 	return pageSoup
+
+def getIngIndex(divList):
+#Takes in list of 'div' tags and returns index corresponding to 'Ingredients:'
+	for i in range(len(divList)):
+		if 'Ingredients:' in divList[i].text:
+			return i
+
+	return None
 
 def removeNonAscii(s): 
 #Remove the non ASCII characters in string to eliminate error
