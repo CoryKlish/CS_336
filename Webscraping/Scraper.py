@@ -154,12 +154,11 @@ def scrapeLinks(urlList):
 			
 			if ingIndex == None:
 				ing = ''
-				break
-
-			ing = divList[ingIndex].text.split(sep)[1].strip().replace(',','|')
-			#ing = ing.encode('utf-8')
-			ing = removeNonAscii(ing)
-			ing = str(ing)
+			else:
+				ing = divList[ingIndex].text.split(sep)[1].strip().replace(',','|')
+				#ing = ing.encode('utf-8')
+				ing = removeNonAscii(ing)
+				ing = str(ing)
 		else:
 			ing = ''
 
