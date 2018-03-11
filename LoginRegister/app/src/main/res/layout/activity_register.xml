@@ -6,7 +6,7 @@
     tools:context="com.example.kenchang.loginregister.RegisterActivity">
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etfirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -16,55 +16,69 @@
         android:layout_marginStart="86dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="First Name"
         android:inputType="textPersonName"
         android:singleLine="false" />
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etlastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etName"
-        android:layout_alignStart="@+id/etName"
-        android:layout_below="@+id/etName"
-        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@+id/etfirstName"
+        android:layout_alignStart="@+id/etfirstName"
+        android:layout_below="@+id/etfirstName"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Last Name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/etPassword"
+        android:id="@+id/etemail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etUsername"
-        android:layout_alignStart="@+id/etUsername"
-        android:layout_below="@+id/etUsername"
+        android:layout_alignLeft="@+id/etlastname"
+        android:layout_alignStart="@+id/etlastname"
+        android:layout_below="@+id/etlastname"
         android:layout_marginTop="11dp"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/etpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etemail"
+        android:layout_alignStart="@+id/etemail"
+        android:layout_below="@+id/etemail"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
-
-    <EditText
-        android:id="@+id/etAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etPassword"
-        android:layout_alignStart="@+id/etPassword"
-        android:layout_below="@+id/etPassword"
-        android:layout_marginTop="12dp"
-        android:ems="10"
-        android:hint="Age"
-        android:inputType="number" />
 
     <Button
         android:id="@+id/bRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/etAge"
-        android:layout_alignStart="@+id/etAge"
-        android:layout_below="@+id/etAge"
-        android:layout_marginLeft="62dp"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="23dp"
-        android:text="REGISTER" />
+        android:layout_alignLeft="@+id/etpassword"
+        android:layout_alignStart="@+id/etpassword"
+        android:layout_below="@+id/etpassword"
+        android:layout_marginLeft="59dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginTop="80dp"
+        android:text="REGISTER"
+        />
+
+    <EditText
+        android:id="@+id/etdob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/etpassword"
+        android:layout_alignRight="@+id/etpassword"
+        android:layout_below="@+id/etpassword"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="mm/dd/yyyy"
+        android:inputType="date" />
+
 </android.widget.RelativeLayout>
