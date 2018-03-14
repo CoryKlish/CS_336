@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_search"
+        android:icon="@mipmap/ic_search_black_24dp"
+        android:title="Search Foods" />
+    <item android:id="@+id/nav_account"
+        android:icon="@mipmap/ic_person_black_24dp"
+        android:title="My Account" />
+    <item android:id="@+id/nav_suggestions"
+        android:icon="@mipmap/ic_restaurant_black_24dp"
+        android:title="Food Suggestions" />
+    <item android:id="@+id/nav_count"
+        android:icon="@mipmap/ic_equalizer_black_24dp"
+        android:title="Nutrition Counter" />
+    <item android:id="@+id/nav_fact"
+        android:icon="@mipmap/ic_info_black_24dp"
+        android:title="Fun Fact" />
+    <item android:id="@+id/nav_settings"
+        android:icon="@mipmap/ic_settings_black_24dp"
+        android:title="Settings" />
+    <item android:id="@+id/nav_logout"
+        android:icon="@mipmap/ic_power_settings_new_black_24dp"
+        android:title="Log Out" />
+</menu>
