@@ -16,9 +16,6 @@
     <item android:id="@+id/nav_fact"
         android:icon="@mipmap/ic_info_black_24dp"
         android:title="Fun Fact" />
-    <item android:id="@+id/nav_settings"
-        android:icon="@mipmap/ic_settings_black_24dp"
-        android:title="Settings" />
     <item android:id="@+id/nav_logout"
         android:icon="@mipmap/ic_power_settings_new_black_24dp"
         android:title="Log Out" />
