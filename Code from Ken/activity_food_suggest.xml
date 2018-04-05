@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <EditText
+                android:id="@+id/etFoodSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="51dp"
+                android:ems="10"
+                android:hint="Enter a food"
+                android:inputType="textPersonName" />
+
+            <Button
+                android:id="@+id/bSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etFoodSearch"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Search" />
+
+            <TextView
+                android:id="@+id/tvSuggest1"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bSearch"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="38dp"
+                android:hint="Result will be displayed below after searched"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
