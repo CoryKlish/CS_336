@@ -1,0 +1,52 @@
+<resources>
+    <string name="app_name">LoginRegister</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string name="enter_food">Enter Food</string>
+    <string name="enter">enter</string>
+    <string name="energy">Energy</string>
+    <string name="ene">Energy</string>
+    <string name="fiber">fiber</string>
+    <string name="fi">f</string>
+    <string name="s">s</string>
+    <string name="fats">fats</string>
+    <string name="sugar">sugar</string>
+    <string name="f">f</string>
+    <string name="carbohydrates">carbohydrates</string>
+    <string name="c">c</string>
+    <string name="protein2">Protein</string>
+    <string name="p">P</string>
+    <string name="name">Name</string>
+    <string name="Energy">Energy</string>
+    <string name="Pro">Protein</string>
+    <string name="fa">Fat</string>
+    <string name="carbs">Carbs</string>
+    <string name="sugars3">Sugars</string>
+    <string name="fibers4">Fibers</string>
+    <string name="calorie">Calories</string>
+    <string name="calories">Calories</string>
+    <string name="fat6">Fat</string>
+    <string name="Sugar">Sugar</string>
+    <string name="Calories">calories</string>
+    <string name="Fat">Fat</string>
+    <string name="Fiber">Fiber</string>
+    <string name="Protein">Protein</string>
+    <string name="Carbohydrate">Carbohydrate</string>
+    <string name="Calorie">Calories</string>
+    <string name="result1">result</string>
+    <string name="result2">result</string>
+    <string name="result3">result</string>
+    <string name="result4">result</string>
+    <string name="result5">result</string>
+    <string name="result6">result</string>
+    <string name="carbohydrate">Carbohydrate</string>
+    <string name="fibers">Fibers</string>
+    <string name="protein">Protein</string>
+    <string name="sugars">Sugars</string>
+    <string name="fat">Fat</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

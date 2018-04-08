@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FoodSuggestionsRequest extends StringRequest{
     //simTest.php
-    private static final String Food_Suggestions_URL = "http://ec2-18-219-194-148.us-east-2.compute.amazonaws.com/simTest.php";
+    private static final String Food_Suggestions_URL = "http://ec2-18-219-194-148.us-east-2.compute.amazonaws.com/simFood.php";
     private Map<String,String> params;
 
     public FoodSuggestionsRequest(String user, String foodSearch, Response.Listener<String> listener) {

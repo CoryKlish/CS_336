@@ -30,8 +30,10 @@ public class FoodSuggestActivity extends AppCompatActivity {
         final EditText foodSearch = (EditText) findViewById(R.id.etFoodSearch);
         final Button search = (Button) findViewById(R.id.bSearch);
         final TextView suggest1 = (TextView) findViewById(R.id.tvSuggest1);
-        Intent temp = getIntent();
-        final String email = temp.getStringExtra("email");
+        //final String email = getIntent().getExtras().getString("email");
+        final String email = "dm@rutgers.edu";
+      /*  Intent temp = getIntent();
+        final String email = temp.getStringExtra("email");*/
 
 
         /*final TextView suggest2 = (TextView) findViewById(R.id.tvSuggest2);
@@ -44,8 +46,11 @@ public class FoodSuggestActivity extends AppCompatActivity {
             //final String lol = foodSearch.getText().toString();
             public void onClick(View v){
 
-                //Intent searchIntent = new Intent(FoodSuggestActivity.this, FoodSuggestActivity.class);
-                System.out.println("ANSWERRRR ----- > >>>>> " + email);
+             //   Intent searchIntent = new Intent(FoodSuggestActivity.this, FoodSuggestActivity.class);
+
+                v.getContext();
+
+                System.out.println(">>>>>>>>>>>ANSWEER>>>>>>>>>>>" + email);
 
 
 
@@ -54,7 +59,6 @@ public class FoodSuggestActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response){
                         try {
-
 
 
                             //JSONObject jsonResponse = new JSONObject(response);
@@ -81,69 +85,6 @@ public class FoodSuggestActivity extends AppCompatActivity {
                                 suggest1.setText(total);
 
 
-
-
-                /*
-                                //get allergies into a String
-                                smallArray = array.getJSONObject(1);
-                                JSONArray allergiesArray = smallArray.getJSONArray("allergies");
-
-                                    //JSONObject allergies = array.getJSONObject(1);
-                                    //JSONArray allergiesArray = allergies.getJSONArray("allergies");
-
-
-                                JSONObject allergy;
-                                String allergyList = "";
-                                for(int cnt = 0; cnt < allergiesArray.length(); cnt++) {
-                                    allergy = allergiesArray.getJSONObject(cnt);
-                                    if(cnt + 1 == allergiesArray.length())
-                                        allergyList += allergy.getString("allergy");
-                                    else
-                                        allergyList += allergy.getString("allergy") + "| ";
-                                }
-                                System.out.println("Allergy List is --> " + allergyList);
-
-
-                                //get ingredients from searched food
-                                smallArray = array.getJSONObject(2);
-                                String foodSearchIngred = smallArray.getString("ingredients");
-
-                                System.out.println("User searched: " + foodPass + " Ingredients: " + foodSearchIngred);
-
-                                // find # of allergy ingredients in search food
-                                Helper h = new Helper();
-                                int [] info = h.similarities(foodSearchIngred,allergyList);
-                                int allergyInSearchedFood = info[2];
-
-                                System.out.println("Allergy Matched in Searched Food --> " + allergyInSearchedFood);
-
-                                //start calculating similaries with every food (use insertion sort)
-                                //double [] topFive = new double[5];
-                                String matchFirstName = "";
-                                String matchFirstIngred = "";
-
-                                String testerName = "";
-                                String testerIngred = "";
-
-                                int leftOver = 0;
-                                double accuracy = 0;
-
-                                for(int cnt = 3; cnt < array.length(); cnt++){
-                                    smallArray = array.getJSONObject(cnt);
-                                    testerName = smallArray.getString("productName");
-                                    testerIngred = smallArray.getString("ingredients");
-                                    info = h.similarities(foodSearchIngred,testerIngred);
-                                    leftOver = info[3] - 1;
-                                    accuracy = (double)(info[2]*2)/(double)(info[0]+info[1]-allergyInSearchedFood);
-                                    System.out.println(testerName + " Left Over: " + leftOver + " Accuracy: " + accuracy);
-                                }
-
-
-
-                                    //Intent intent = new Intent(FoodSuggestActivity.this, FoodSuggestActivity.class); // check this
-                                    //FoodSuggestActivity.this.startActivity(intent);
-
-                */
                                 Toast.makeText(getApplicationContext(),"Searching Successful", Toast.LENGTH_LONG).show();
 
                             }
@@ -157,17 +98,18 @@ public class FoodSuggestActivity extends AppCompatActivity {
 
                         }catch(JSONException e){
                             e.printStackTrace();
+                            System.out.println("aint workin");
                         }
                     }
 
                 };
 
+                System.out.println(">>>>>>>>>>>BLAH>>>>>>>>>>>" + email);
+
 
                 FoodSuggestionsRequest foodSuggestionrequest = new FoodSuggestionsRequest(email,foodPass,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(FoodSuggestActivity.this);
                 queue.add(foodSuggestionrequest);
-
-
             }
 
 

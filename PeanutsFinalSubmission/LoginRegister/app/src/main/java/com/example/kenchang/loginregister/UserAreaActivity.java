@@ -42,7 +42,7 @@ public class UserAreaActivity extends AppCompatActivity {
             String lastName = intent.getStringExtra("lastName");
 
             final String email = intent.getStringExtra("email");
-            intent.putExtra("email",email);
+            //intent.putExtra("email",email);
 
             //String dob = intent.getStringExtra("dob");
 
@@ -66,6 +66,14 @@ public class UserAreaActivity extends AppCompatActivity {
                 Intent suggestIntent = new Intent(UserAreaActivity.this, FoodSuggestActivity.class);
                 suggestIntent.putExtra("email",email);
                 UserAreaActivity.this.startActivity(suggestIntent);
+            }
+        });
+
+        counter.setOnClickListener(new View.OnClickListener() { // look for click for registerLink and execute code below.
+            @Override
+            public void onClick(View v) {
+                Intent counterIntent = new Intent(UserAreaActivity.this, MainActivity.class);
+                UserAreaActivity.this.startActivity(counterIntent);
             }
         });
 

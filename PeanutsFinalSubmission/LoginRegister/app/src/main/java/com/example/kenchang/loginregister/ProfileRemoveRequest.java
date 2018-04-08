@@ -18,7 +18,7 @@ public class ProfileRemoveRequest extends StringRequest{ // request to register.
         params = new HashMap<>();
         params.put("username", username);
         params.put("password", password);
-        params.put("allergy", allergy);
+        params.put("delAllergy", allergy);
     }
 
     @Override

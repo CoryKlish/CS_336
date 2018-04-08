@@ -50,8 +50,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"Allergy Successfully Added", Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(ProfileActivity.this, UserAreaActivity.class);
-                                ProfileActivity.this.startActivity(intent);
+                                //Intent intent = new Intent(ProfileActivity.this, ProfileActivity.class);
+                                //ProfileActivity.this.startActivity(intent);
 
                             }
                             else {
@@ -97,8 +97,8 @@ public class ProfileActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"Allergy Successfully Removed", Toast.LENGTH_LONG).show();
 
-                                Intent intent = new Intent(ProfileActivity.this, UserAreaActivity.class);
-                                ProfileActivity.this.startActivity(intent);
+                                //Intent intent = new Intent(ProfileActivity.this, UserAreaActivity.class);
+                                //ProfileActivity.this.startActivity(intent);
 
                             }
                             else {
